@@ -1,13 +1,13 @@
 // @ts-nocheck
 
 import { useEffect, useState, useRef } from 'react';
-import './App.css';
 import positiveT from './datalists/positive_traits.json';
 import negativeT from './datalists/negative_traits.json';
 import neutralT from './datalists/neutral_traits.json';
 import jobs from './datalists/common_jobs.json';
 import storyAdjectives from './datalists/story_descriptors.json';
 import genres from './datalists/story_genres.json';
+import './App.css';
 
 function MainPage() {
   const [randomStory, setRandomStory] = useState('');
@@ -68,7 +68,6 @@ function MainPage() {
     };
 
     const fetchGPT = (prompt) => {
-      if (timer > 0) return;
       fetch('https://api.openai.com/v1/completions', {
         method: 'POST',
         headers: {
