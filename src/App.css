@@ -1,0 +1,146 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body,
+html {
+  margin: 0;
+  font-family: Poppins, Helvetica, sans-serif;
+  background: hsl(0, 0%, 13%);
+  color: #fbf0d9;
+}
+
+h2,
+h4 {
+  margin-bottom: 0px;
+}
+
+a {
+  all: unset;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+#top-nav {
+  font-size: 1.2rem;
+  width: 100%;
+  border-bottom: 1px solid #fbf0d9;
+}
+
+#top-nav ul {
+  display: flex;
+  list-style: none;
+  padding: 0 1rem;
+  gap: 1rem;
+}
+
+#top-nav li {
+  text-underline-offset: 0px;
+  transition: all 0.2s;
+}
+
+#top-nav li:hover {
+  cursor: pointer;
+  color: hsl(41, 81%, 83%);
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+#top-nav li:nth-of-type(2) {
+  display: flex;
+  margin-left: auto;
+}
+
+.main-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.story-box {
+  margin-top: 15px;
+  background: #fbf0d9;
+  color: hsl(33, 31%, 16%);
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  height: 450px;
+  width: 380px;
+  border-radius: 20px;
+  white-space: pre-wrap;
+  overflow-y: scroll;
+}
+
+.reception-box {
+  display: flex;
+  align-items: center;
+  width: 200px;
+  justify-content: space-between;
+  margin: 8px 0;
+}
+
+.reception-box > button {
+  cursor: pointer;
+  padding: 5px;
+}
+
+.like-btn {
+  background: forestgreen;
+  border: 2px solid green;
+}
+
+.like-btn:hover {
+  background: green;
+}
+
+.dislike-btn {
+  background: crimson;
+  border: 2px solid red;
+}
+
+.dislike-btn:hover {
+  background: red;
+}
+
+.initial-btn {
+  display: initial;
+  pointer-events: none;
+}
+
+@media screen and (max-width: 400px) {
+  #top-nav {
+    font-size: 1rem;
+  }
+
+  .story-box {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 319px) {
+  h2 {
+    text-align: center;
+  }
+
+  #top-nav {
+    font-size: 0.8rem;
+  }
+
+  .story-box {
+    width: 260px;
+  }
+}
