@@ -3,7 +3,6 @@
   "Crime",
   "Drama",
   "Fantasy",
-  "Horror",
   "Comedy",
   "Romance",
   "Science Fiction",
@@ -12,5 +11,5 @@
   "Mystery",
   "War",
   "Western",
-  "Cautionary Tale"
+  "Cautionary"
 ]

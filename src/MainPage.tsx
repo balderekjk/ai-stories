@@ -90,8 +90,9 @@ function MainPage() {
     let storyType = getRandomStoryType();
     let person = getRandomPerson();
 
-    let story = `Create a ${storyType} story with descriptive imagery but absolutely no human death with the central protagonist being a ${person}`;
-    fetchGPT(story);
+    let story = `Create a ${storyType} story with descriptive imagery with the central protagonist being a ${person}`;
+    // fetchGPT(story);
+    console.log(story);
     setTimer(30);
   }, [reviewed]);
 
