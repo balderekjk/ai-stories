@@ -11,7 +11,7 @@ import './App.css';
 
 function MainPage() {
   const [randomStory, setRandomStory] = useState('');
-  const [timer, setTimer] = useState(20);
+  const [timer, setTimer] = useState(30);
   const [reviewed, setReviewed] = useState(false);
   const readerRef = useRef();
 
@@ -69,12 +69,7 @@ function MainPage() {
     };
 
     const fetchGPT = (prompt) => {
-      let currentTime = Math.floor(Date.now() / 1000);
-      if (!localStorage.getItem('reqTime'))
-        localStorage.setItem('reqTime', Math.floor(Date.now() / 1000 + timer));
-      let reqTime = localStorage.getItem('reqTime');
-      if (reqTime > currentTime) return;
-      localStorage.removeItem('reqTime');
+      if (localStorage.getItem('rsggotcha')) return;
       fetch('https://api.openai.com/v1/completions', {
         method: 'POST',
         headers: {
@@ -89,19 +84,26 @@ function MainPage() {
         }),
       })
         .then((response) => response.json())
-        .then((data) => setRandomStory(data.choices[0].text))
+        .then((data) => {
+          setRandomStory(data.choices[0].text);
+          localStorage.setItem('rsggotcha', '1');
+          setTimer(30);
+        })
         .catch((error) => console.log(error));
     };
 
     let storyType = getRandomStoryType();
     let person = getRandomPerson();
 
-    setTimer(30);
     let story = `Create a ${storyType} story with descriptive imagery featuring a ${person}. No explicit language allowed.`;
     fetchGPT(story);
   }, [reviewed]);
 
   useEffect(() => {
+    if (timer === 0) {
+      localStorage.removeItem('rsggotcha');
+    }
+
     const time = setInterval(() => {
       if (timer > 0) {
         setTimer(timer - 1);
@@ -148,14 +150,14 @@ function MainPage() {
               <span style={{ color: 'darkblue' }}>
                 <strong>10 seconds</strong>
               </span>
-              . If you refreshed page before your time, you will need to refresh
-              again when time is up.
+              . If you refreshed page before time reached zero, you will need to
+              refresh again when time reaches zero.
             </div>
           )}
         </div>
       </div>
       <span>Vote for New: {timer}</span>
-      {!localStorage.getItem('reqTime') && (
+      {randomStory && timer === 0 && (
         <div className="reception-box">
           <button
             onClick={() => handleReview(1)}
