@@ -11,7 +11,7 @@ const Acclaimed = () => {
       let response = await fetch(
         `${
           import.meta.env.VITE_BASE_SERVER_URL
-        }collections/stories/records?sort=-likes,-created,-ratings&&filter=likes>0`
+        }collections/stories/records?sort=-ratings,-updated,-likes&filter=likes>0&perPage=10`
       );
       let data = await response.json();
       setStories(data.items);
