@@ -72,8 +72,6 @@ function MainPage() {
       let currentTime = Math.floor(Date.now() / 1000);
       if (!localStorage.getItem('reqTime'))
         localStorage.setItem('reqTime', Math.floor(Date.now() / 1000 + timer));
-      console.log(localStorage.getItem('reqTime'), 'reqTime');
-      console.log(currentTime, 'currentTime');
       let reqTime = localStorage.getItem('reqTime');
       if (reqTime > currentTime) return;
       localStorage.removeItem('reqTime');
@@ -98,9 +96,9 @@ function MainPage() {
     let storyType = getRandomStoryType();
     let person = getRandomPerson();
 
+    setTimer(30);
     let story = `Create a ${storyType} story with descriptive imagery featuring a ${person}. No explicit language allowed.`;
     fetchGPT(story);
-    setTimer(30);
   }, [reviewed]);
 
   useEffect(() => {
@@ -142,9 +140,18 @@ function MainPage() {
       <h4 style={{ marginBottom: '20px' }}>Powered by OpenAI</h4>
       <div className="main-content-wrapper">
         <div className="story-box" ref={readerRef}>
-          {randomStory
-            ? randomStory.trim()
-            : 'Please wait. Random story is generating. This can take up to 10 seconds. If you refreshed page before your time, you will need to refresh again when time is up.'}
+          {randomStory ? (
+            randomStory.trim()
+          ) : (
+            <div>
+              Please wait. Random story is generating. This can take up to{' '}
+              <span style={{ color: 'darkblue' }}>
+                <strong>10 seconds</strong>
+              </span>
+              . If you refreshed page before your time, you will need to refresh
+              again when time is up.
+            </div>
+          )}
         </div>
       </div>
       <span>Vote for New: {timer}</span>
