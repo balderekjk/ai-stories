@@ -13,8 +13,8 @@
   "Compelling",
   "Inspiring",
   "Thought-provoking",
+  "Dialogue-heavy",
   "Intriguing",
-  "Intense",
   "Enchanting",
   "Unforgettable",
   "Memorable",
@@ -34,7 +34,6 @@
   "Humorous",
   "Clever",
   "Satirical",
-  "Irreverent",
   "Quirky",
   "Wry",
   "Sarcastic",
@@ -85,5 +84,8 @@
   "Cinematic",
   "Visual",
   "Verbose",
-  "Expressive"
+  "Expressive",
+  "Non-linear",
+  "Subversive",
+  "Adventurous"
 ]

@@ -1,6 +1,5 @@
 [
   "Action",
-  "Crime",
   "Drama",
   "Fantasy",
   "Comedy",
@@ -8,8 +7,11 @@
   "Family",
   "Science Fiction",
   "Sports",
-  "Thriller",
   "Mystery",
   "Western",
-  "Cautionary Tale"
+  "Cautionary",
+  "Documentary",
+  "Character Study",
+  "Meta",
+  "Musical"
 ]
