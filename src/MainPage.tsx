@@ -26,6 +26,7 @@ function MainPage() {
 
   useEffect(() => {
     if (!localStorage.getItem('rsgenkey')) createLocalId();
+    setRandomStory('');
     const getRandomStoryType = () => {
       let storyBuild = [];
       for (let i = 0; i < 2; i++) {
