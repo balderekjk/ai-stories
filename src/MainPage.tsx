@@ -99,7 +99,7 @@ function MainPage() {
     let storyType = getRandomStoryType();
     let person = getRandomPerson();
 
-    let story = `Create a ${storyType} story with descriptive language featuring a ${person}. No explicit language allowed.`;
+    let story = `Create a ${storyType} story of moderate length featuring descriptive language and a ${person}. No explicit language allowed.`;
     fetchGPT(story);
   }, [reviewed]);
 
