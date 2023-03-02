@@ -31,7 +31,7 @@ function MainPage() {
       let storyBuild = [];
       for (let i = 0; i < 2; i++) {
         let randomDescriptor = randomize(storyAdjectives.length);
-        storyBuild.push(storyAdjectives[randomDescriptor]);
+        storyBuild.push(storyAdjectives[randomDescriptor].toLowerCase());
       }
       let randomGenreIdx = randomize(13);
       let randomGenre = genres[randomGenreIdx];
@@ -51,20 +51,20 @@ function MainPage() {
         switch (arr[i]) {
           case 0:
             traitIndex = randomize(positiveT.length);
-            traits.push(positiveT[traitIndex]);
+            traits.push(positiveT[traitIndex].toLowerCase());
             break;
           case 1:
             traitIndex = randomize(negativeT.length);
-            traits.push(negativeT[traitIndex]);
+            traits.push(negativeT[traitIndex].toLowerCase());
             break;
           case 2:
             traitIndex = randomize(neutralT.length);
-            traits.push(neutralT[traitIndex]);
+            traits.push(neutralT[traitIndex].toLowerCase());
         }
       }
       let jobIndex = randomize(jobs.length);
       let randomJob = jobs[jobIndex];
-      let joined = traits.join(', ') + ' ' + randomJob;
+      let joined = randomJob + ' who is ' + traits.join(' and ');
       return joined;
     };
 
@@ -90,8 +90,9 @@ function MainPage() {
     let storyType = getRandomStoryType();
     let person = getRandomPerson();
 
-    let story = `Create a ${storyType} story with descriptive imagery with the central protagonist being a ${person}`;
+    let story = `Create a ${storyType} story with descriptive imagery featuring a ${person}`;
     fetchGPT(story);
+    console.log(story);
     setTimer(30);
   }, [reviewed]);
 
