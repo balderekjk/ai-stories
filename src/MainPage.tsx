@@ -69,6 +69,14 @@ function MainPage() {
     };
 
     const fetchGPT = (prompt) => {
+      let currentTime = Math.floor(Date.now() / 1000);
+      if (!localStorage.getItem('reqTime'))
+        localStorage.setItem('reqTime', Math.floor(Date.now() / 1000 + timer));
+      console.log(localStorage.getItem('reqTime'), 'reqTime');
+      console.log(currentTime, 'currentTime');
+      let reqTime = localStorage.getItem('reqTime');
+      if (reqTime > currentTime) return;
+      localStorage.removeItem('reqTime');
       fetch('https://api.openai.com/v1/completions', {
         method: 'POST',
         headers: {
@@ -90,7 +98,7 @@ function MainPage() {
     let storyType = getRandomStoryType();
     let person = getRandomPerson();
 
-    let story = `Create a ${storyType} story with descriptive imagery featuring a ${person}`;
+    let story = `Create a ${storyType} story with descriptive imagery featuring a ${person}. No explicit language allowed.`;
     fetchGPT(story);
     setTimer(30);
   }, [reviewed]);
@@ -136,26 +144,28 @@ function MainPage() {
         <div className="story-box" ref={readerRef}>
           {randomStory
             ? randomStory.trim()
-            : 'Please wait. Random story is generating. This can take up to 10 seconds.'}
+            : 'Please wait. Random story is generating. This can take up to 10 seconds. If you refreshed page before your time, you will need to refresh again when time is up.'}
         </div>
       </div>
-      <div className="reception-box">
-        <button
-          onClick={() => handleReview(1)}
-          disabled={timer > 0}
-          className={`${timer > 0 ? 'initial-btn' : 'like-btn'}`}
-        >
-          &#128077;
-        </button>
-        <span>Vote for New: {timer}</span>
-        <button
-          onClick={() => handleReview(-1)}
-          disabled={timer > 0}
-          className={`${timer > 0 ? 'initial-btn' : 'dislike-btn'}`}
-        >
-          &#128078;
-        </button>
-      </div>
+      <span>Vote for New: {timer}</span>
+      {!localStorage.getItem('reqTime') && (
+        <div className="reception-box">
+          <button
+            onClick={() => handleReview(1)}
+            disabled={timer > 0}
+            className={`${timer > 0 ? 'initial-btn' : 'like-btn'}`}
+          >
+            &#128077;
+          </button>
+          <button
+            onClick={() => handleReview(-1)}
+            disabled={timer > 0}
+            className={`${timer > 0 ? 'initial-btn' : 'dislike-btn'}`}
+          >
+            &#128078;
+          </button>
+        </div>
+      )}
     </div>
   );
 }
