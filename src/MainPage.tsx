@@ -92,7 +92,6 @@ function MainPage() {
 
     let story = `Create a ${storyType} story with descriptive imagery featuring a ${person}`;
     fetchGPT(story);
-    console.log(story);
     setTimer(30);
   }, [reviewed]);
 
