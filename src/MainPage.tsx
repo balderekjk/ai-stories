@@ -91,8 +91,7 @@ function MainPage() {
     let person = getRandomPerson();
 
     let story = `Create a ${storyType} story with descriptive imagery with the central protagonist being a ${person}`;
-    // fetchGPT(story);
-    console.log(story);
+    fetchGPT(story);
     setTimer(30);
   }, [reviewed]);
 
