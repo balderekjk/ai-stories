@@ -11,7 +11,7 @@ import './App.css';
 
 function MainPage() {
   const [randomStory, setRandomStory] = useState('');
-  const [timer, setTimer] = useState(30);
+  const [timer, setTimer] = useState(25);
   const [reviewed, setReviewed] = useState(false);
   const readerRef = useRef();
 
@@ -69,6 +69,7 @@ function MainPage() {
     };
 
     const fetchGPT = (prompt) => {
+      setTimer(25);
       if (
         localStorage.getItem('rsggotcha') &&
         localStorage.getItem('rsggotcha') > Math.floor(Date.now() / 1000)
@@ -91,7 +92,6 @@ function MainPage() {
         .then((data) => {
           setRandomStory(data.choices[0].text);
           localStorage.setItem('rsggotcha', Math.floor(Date.now() / 1000) + 30);
-          setTimer(30);
         })
         .catch((error) => console.log(error));
     };
@@ -164,7 +164,7 @@ function MainPage() {
           )}
         </div>
       </div>
-      <span style={{ marginTop: '8px' }}>Vote for New: {timer}</span>
+      <span style={{ marginTop: '8px' }}>Vote to View New Story: {timer}</span>
       {randomStory && timer === 0 && (
         <div className="reception-box">
           <button
