@@ -69,7 +69,11 @@ function MainPage() {
     };
 
     const fetchGPT = (prompt) => {
-      if (localStorage.getItem('rsggotcha')) return;
+      if (
+        localStorage.getItem('rsggotcha') &&
+        localStorage.getItem('rsggotcha') > Math.floor(Date.now() / 1000)
+      )
+        return;
       fetch('https://api.openai.com/v1/completions', {
         method: 'POST',
         headers: {
@@ -86,7 +90,7 @@ function MainPage() {
         .then((response) => response.json())
         .then((data) => {
           setRandomStory(data.choices[0].text);
-          localStorage.setItem('rsggotcha', '1');
+          localStorage.setItem('rsggotcha', Math.floor(Date.now() / 1000) + 30);
           setTimer(30);
         })
         .catch((error) => console.log(error));
@@ -95,7 +99,7 @@ function MainPage() {
     let storyType = getRandomStoryType();
     let person = getRandomPerson();
 
-    let story = `Create a ${storyType} story with descriptive imagery featuring a ${person}. No explicit language allowed.`;
+    let story = `Create a ${storyType} story with descriptive language featuring a ${person}. No explicit language allowed.`;
     fetchGPT(story);
   }, [reviewed]);
 
@@ -138,6 +142,10 @@ function MainPage() {
 
   return (
     <div className="App">
+      {console.log(
+        localStorage.getItem('rsggotcha'),
+        Math.floor(Date.now() / 1000)
+      )}
       <h2>Random Story Generator</h2>
       <h4 style={{ marginBottom: '20px' }}>Powered by OpenAI</h4>
       <div className="main-content-wrapper">
@@ -156,7 +164,7 @@ function MainPage() {
           )}
         </div>
       </div>
-      <span>Vote for New: {timer}</span>
+      <span style={{ marginTop: '8px' }}>Vote for New: {timer}</span>
       {randomStory && timer === 0 && (
         <div className="reception-box">
           <button
