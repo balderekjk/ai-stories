@@ -142,10 +142,6 @@ function MainPage() {
 
   return (
     <div className="App">
-      {console.log(
-        localStorage.getItem('rsggotcha'),
-        Math.floor(Date.now() / 1000)
-      )}
       <h2>Random Story Generator</h2>
       <h4 style={{ marginBottom: '20px' }}>Powered by OpenAI</h4>
       <div className="main-content-wrapper">
