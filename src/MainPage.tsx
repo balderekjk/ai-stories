@@ -43,7 +43,7 @@ function MainPage() {
       let arr = [];
       let traits = [];
       for (let i = 0; i < 2; i++) {
-        let random = randomize(3);
+        let random = randomize(2);
         arr.push(random);
       }
       for (let i = 0; i < arr.length; i++) {
@@ -54,12 +54,12 @@ function MainPage() {
             traits.push(positiveT[traitIndex].toLowerCase());
             break;
           case 1:
-            traitIndex = randomize(negativeT.length);
-            traits.push(negativeT[traitIndex].toLowerCase());
-            break;
-          case 2:
             traitIndex = randomize(neutralT.length);
             traits.push(neutralT[traitIndex].toLowerCase());
+          //   break;
+          // case 2:
+          //   traitIndex = randomize(neutralT.length);
+          //   traits.push(neutralT[traitIndex].toLowerCase());
         }
       }
       let jobIndex = randomize(jobs.length);
@@ -99,7 +99,8 @@ function MainPage() {
     let storyType = getRandomStoryType();
     let person = getRandomPerson();
 
-    let story = `Create a ${storyType} story of moderate length featuring descriptive language and a ${person}. No explicit language allowed.`;
+    let story = `Create a ${storyType} story of moderate length featuring a ${person}. The conflict is elaborate. The imagery is vivid. No explicit language allowed.`;
+    // console.log(story);
     fetchGPT(story);
   }, [reviewed]);
 
@@ -159,26 +160,28 @@ function MainPage() {
             </div>
           )}
         </div>
+        <span style={{ marginTop: '8px' }}>
+          Vote to View New Story: {timer}
+        </span>
+        {randomStory && timer === 0 && (
+          <div className="reception-box">
+            <button
+              onClick={() => handleReview(1)}
+              disabled={timer > 0}
+              className={`${timer > 0 ? 'initial-btn' : 'like-btn'}`}
+            >
+              &#128077;
+            </button>
+            <button
+              onClick={() => handleReview(-1)}
+              disabled={timer > 0}
+              className={`${timer > 0 ? 'initial-btn' : 'dislike-btn'}`}
+            >
+              &#128078;
+            </button>
+          </div>
+        )}
       </div>
-      <span style={{ marginTop: '8px' }}>Vote to View New Story: {timer}</span>
-      {randomStory && timer === 0 && (
-        <div className="reception-box">
-          <button
-            onClick={() => handleReview(1)}
-            disabled={timer > 0}
-            className={`${timer > 0 ? 'initial-btn' : 'like-btn'}`}
-          >
-            &#128077;
-          </button>
-          <button
-            onClick={() => handleReview(-1)}
-            disabled={timer > 0}
-            className={`${timer > 0 ? 'initial-btn' : 'dislike-btn'}`}
-          >
-            &#128078;
-          </button>
-        </div>
-      )}
     </div>
   );
 }
