@@ -35,7 +35,7 @@ function MainPage() {
       }
       let randomGenreIdx = randomize(13);
       let randomGenre = genres[randomGenreIdx];
-      let joined = storyBuild.join(', ') + ' ' + randomGenre;
+      let joined = storyBuild.join('and ') + ' ' + randomGenre;
       return joined;
     };
 
@@ -64,7 +64,7 @@ function MainPage() {
       }
       let jobIndex = randomize(jobs.length);
       let randomJob = jobs[jobIndex];
-      let joined = randomJob + ' who is ' + traits.join(' and ');
+      let joined = randomJob + ' who is both ' + traits.join(' and ');
       return joined;
     };
 
@@ -84,7 +84,7 @@ function MainPage() {
         body: JSON.stringify({
           model: 'text-curie-001',
           prompt: prompt,
-          temperature: 0.6,
+          temperature: 0.7,
           max_tokens: 420,
         }),
       })
@@ -99,7 +99,7 @@ function MainPage() {
     let storyType = getRandomStoryType();
     let person = getRandomPerson();
 
-    let story = `Create a ${storyType} story of moderate length featuring a ${person}. The conflict is elaborate. The imagery is vivid. No explicit language allowed.`;
+    let story = `Write a ${storyType} of moderate length featuring a ${person}. The story should have an intense conflict. The story should have a hopeful resolution. No explicit language allowed.`;
     // console.log(story);
     fetchGPT(story);
   }, [reviewed]);
