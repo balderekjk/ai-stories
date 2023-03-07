@@ -1,6 +1,5 @@
 [
   "Epic",
-  "Tragic",
   "Romantic",
   "Heartwarming",
   "Mysterious",
@@ -28,7 +27,6 @@
   "Hopeful",
   "Uplifting",
   "Touching",
-  "Heartbreaking",
   "Sentimental",
   "Witty",
   "Humorous",
@@ -59,7 +57,6 @@
   "Educational",
   "Historical",
   "Realistic",
-  "Bleak",
   "Provocative",
   "Subversive",
   "Introspective",
@@ -67,10 +64,7 @@
   "Deep",
   "Nuanced",
   "Complex",
-  "Layered",
   "Complicated",
-  "Ambiguous",
-  "Uncertain",
   "Intricate",
   "Detailed",
   "Realistic",
@@ -85,7 +79,5 @@
   "Visual",
   "Verbose",
   "Expressive",
-  "Non-linear",
-  "Subversive",
   "Adventurous"
 ]
