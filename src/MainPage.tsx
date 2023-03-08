@@ -99,7 +99,7 @@ function MainPage() {
     let storyType = getRandomStoryType();
     let person = getRandomPerson();
 
-    let story = `Write a ${storyType} of moderate length featuring a ${person}. The story should have a ridiculous conflict. The conflict should have an ending.`;
+    let story = `Write a ${storyType} featuring a ${person}. The story should have a suspenseful conflict. The conflict's resolution should be elaborate.`;
     fetchGPT(story);
   }, [reviewed]);
 
